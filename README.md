@@ -21,4 +21,12 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+- "User" - The model responsible for the person who might add and share supplement stacks
+
+- "Stack" - A collection of products a user can share
+
+- "Product" - Gets shared inside a stack. has richer data like price, description title etc
+ 
+- "Brand" - To add a filter later on. 1 brand per supplement
+
+- can add ratings, manufacturing etc
