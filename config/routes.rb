@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :stacks
   resources :products
   resources :brands
   if Rails.env.development? || Rails.env.test?
