@@ -1,13 +1,14 @@
-# README
+# Supstacker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a code-along from web-crunch to build a supplement stacker similar to part-builder. A user create a list of products, with Amazon product codes. They can then share this list with other users.
 
-Things you may want to cover:
+This is my first use of web-crunch's new Rails UI engine. It seems pretty cool so far. 
 
-* Ruby version
+Tech Stack:
 
-* System dependencies
+* Ruby version 3.1.2 on Rails 7.0.8.1
+
+<!-- * System dependencies
 
 * Configuration
 
@@ -19,7 +20,7 @@ Things you may want to cover:
 
 * Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+* Deployment instructions -->
 
 - "User" - The model responsible for the person who might add and share supplement stacks
 
