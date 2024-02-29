@@ -1,4 +1,5 @@
 class StacksController < ApplicationController
+  before_action :authenticate_user!, except: %i[index show]
   before_action :set_stack, only: %i[ show edit update destroy ]
 
   # GET /stacks or /stacks.json
@@ -22,6 +23,7 @@ class StacksController < ApplicationController
   # POST /stacks or /stacks.json
   def create
     @stack = Stack.new(stack_params)
+    @stack.user = current_user
 
     respond_to do |format|
       if @stack.save
@@ -65,6 +67,6 @@ class StacksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def stack_params
-      params.require(:stack).permit(:title, :share_link, :user_id)
+      params.require(:stack).permit(:title)
     end
 end
