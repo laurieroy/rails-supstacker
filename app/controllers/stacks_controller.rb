@@ -25,27 +25,21 @@ class StacksController < ApplicationController
     @stack = Stack.new(stack_params)
     @stack.user = current_user
 
-    respond_to do |format|
+
       if @stack.save
-        format.html { redirect_to stack_url(@stack), notice: "Stack was successfully created." }
-        format.json { render :show, status: :created, location: @stack }
+        redirect_to stack_url(@stack), notice: "Stack was successfully created."
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @stack.errors, status: :unprocessable_entity }
-      end
+        render :new, status: :unprocessable_entity
+      
     end
   end
 
   # PATCH/PUT /stacks/1 or /stacks/1.json
   def update
-    respond_to do |format|
-      if @stack.update(stack_params)
-        format.html { redirect_to stack_url(@stack), notice: "Stack was successfully updated." }
-        format.json { render :show, status: :ok, location: @stack }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @stack.errors, status: :unprocessable_entity }
-      end
+    if @stack.update(stack_params)
+     redirect_to stack_url(@stack), notice: "Stack was successfully updated." 
+    else
+     render :edit, status: :unprocessable_entity 
     end
   end
 
@@ -53,10 +47,7 @@ class StacksController < ApplicationController
   def destroy
     @stack.destroy
 
-    respond_to do |format|
-      format.html { redirect_to stacks_url, notice: "Stack was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to stacks_url, notice: "Stack was successfully destroyed." 
   end
 
   private
