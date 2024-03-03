@@ -6,15 +6,6 @@
     <%= form.text_field :title, class: "form-input" %>
   </div>
 
+  <%= form.submit class: "btn btn-primary" %>
 
-  <div class="sm:flex-1 sm:mb-0 mb-6">
-      <%= form.submit class: "btn btn-primary" %>
-
-
-    <% if form.object.new_record? %>
-      <%= link_to "Cancel", stacks_path, class: "btn btn-light" %>
-    <% else %>
-      <%= link_to "Cancel", stack_path(@stack), class: "btn btn-light" %>
-    <% end %>
-  </div>
 <% end %>
