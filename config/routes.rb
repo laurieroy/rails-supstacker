@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  resources :stacks
-  resources :products
+  resources :stacks do
+    resources :products
+  end
   resources :brands
+  
   if Rails.env.development? || Rails.env.test?
     mount Railsui::Engine, at: "/railsui"
   end
