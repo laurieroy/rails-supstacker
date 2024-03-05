@@ -15,8 +15,9 @@
         </li>
       </ol>
     </nav>
-    <div class="flex items-center justify-between">
+    <div class="flex items-center justify-between gap-4">
       <h1 class="text-4xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight flex-1">stack #<%= @stack.id %></h1>
+      <%= link_to "Add Product", new_stack_product_path(@stack), class: "btn btn-primary" %>
       <%= link_to "Edit", edit_stack_path(@stack), class: "btn btn-light" %>
     </div>
   </div>
