@@ -35,10 +35,10 @@
     <p class="my-0">
       <%= product.brand_id %>
     </p>
-
+<%# 
    <p>
     <%= link_to "View Product", product, class: "underline" %>
-  </p>
-
+<%#   </p>
+ %>
   <time class="text-slate-600 dark:text-slate-400 text-xs mt-2" datetime="<%= product.created_at.to_formatted_s(:long) %>">Created <%= time_ago_in_words(product.created_at) + " ago" %></time>
 </article>
