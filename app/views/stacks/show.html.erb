@@ -22,4 +22,7 @@
     </div>
   </div>
   <%= render @stack %>
+  <% @stack.products.each do |product| %>
+    <%= render "products/product", product: product %>
+  <% end %>
 </div>

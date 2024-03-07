@@ -23,8 +23,7 @@ class ProductsController < ApplicationController
 
   # POST /products or /products.json
   def create
-    @product = Product.new(product_params)
-
+    @product = @stack.products.new(product_params)
 
     if @product.save
        redirect_to stack_products_path(@stack, @product), notice: "Product was successfully created."

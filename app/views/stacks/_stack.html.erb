@@ -11,14 +11,7 @@
     <p class="my-0">
       <%= stack.share_link %>
     </p>
-    <p class="mb-0 font-semibold">
-      User
-    </p>
-
-
-   <p>
-    <%= link_to "View Stack", stack, class: "underline" %>
-  </p>
+ 
 
   <time class="text-slate-600 dark:text-slate-400 text-xs mt-2" datetime="<%= stack.created_at.to_formatted_s(:long) %>">Created <%= time_ago_in_words(stack.created_at) + " ago" %></time>
 </article>
