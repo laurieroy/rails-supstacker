@@ -23,13 +23,9 @@ class ProductsController < ApplicationController
 
   # POST /products or /products.json
   def create
-    @product = @stack.products.new(product_params)
-
-    if @product.save
-       redirect_to stack_products_path(@stack, @product), notice: "Product was successfully created."
-    else
-      render :new, status: :unprocessable_entity
-    end
+    link = params[:product][:link].strip
+    ProductImportJob(link, @stack.id)
+    redirect_to stack_path(@stack), notice: "Product is being created, hang tight!"
   end
 
   # PATCH/PUT /products/1 or /products/1.json

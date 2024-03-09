@@ -3,7 +3,13 @@ Rails.application.routes.draw do
     resources :products
   end
   resources :brands
-  
+
+  # add an admin and run this there
+  if defined?(Sidekiq)
+    require "sidekiq/web"
+    mount Sidekiq::Web => "/sidekiq"
+  end
+
   if Rails.env.development? || Rails.env.test?
     mount Railsui::Engine, at: "/railsui"
   end
