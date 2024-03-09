@@ -71,3 +71,5 @@ group :test do
 end
 
 gem "railsui", "~> 2.0", :github => "getrailsui/railsui", :branch => "main"
+
+gem "nokogiri", "~> 1.16"

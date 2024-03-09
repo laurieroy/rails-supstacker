@@ -264,6 +264,7 @@ DEPENDENCIES
   debug
   image_processing (~> 1.2)
   jbuilder
+  nokogiri (~> 1.16)
   puma (~> 5.0)
   rails (~> 7.0.8, >= 7.0.8.1)
   railsui (~> 2.0)!
