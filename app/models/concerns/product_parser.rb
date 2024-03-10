@@ -1,11 +1,12 @@
 include ActionView::Helpers::SanitizeHelper
+
 module  ProductParser
   require "open-uri"
 
   COMMON_USER_AGENTS = ['Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36','Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36','Mozilla/5.0 (Windows NT 10.0; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36']
 
   def self.parse_doc(url)
-    URI.open(url, 'user-Agent' => COMMON_USER_AGENTS.sample) { |f| Nokogiri::HTML.parse(f)}
+    URI.open(url, 'User-Agent' => COMMON_USER_AGENTS.sample) { |f| Nokogiri::HTML.parse(f)}
   end
 
   module Amazon
@@ -33,16 +34,16 @@ module  ProductParser
 
       # price
       price_1_element = doc.at('#corePrice_feature_div .a-offscreen')
-      price_2_element = doc.at('header-price span')
+      price_2_element = doc.at('.header-price span')
 
       if price_1_element
         price_1_string = price_1_element.inner_html
-        price_1_decimal = price_1_string.gsub(/[^0-9,]/, '').to_d
-        attributes[:price] = price_string
+        price_1_decimal = price_1_string.gsub(/[^0-9.]/, '').to_d
+        attributes[:price] = price_1_decimal
       elsif price_2_element
         price_2_string = price_2_element.inner_html
-        price_2_decimal = price_2_string.gsub(/[^0-9,]/, '').to_d
-        attributes[:price] = price_string
+        price_2_decimal = price_2_string.gsub(/[^0-9.]/, '').to_d
+        attributes[:price] = price_2_decimal
       else
         attributes[:price] = nil
       end
@@ -53,7 +54,7 @@ module  ProductParser
       if brand_element
         brand_string = brand_element.inner_html
         brand_name = brand_string.strip
-        brand = Brand.find_or_create_by(name: brand_name)
+        brand = Brand.find_or_create_by!(name: brand_name)
         attributes[:brand] = brand
       end
 
@@ -64,8 +65,7 @@ module  ProductParser
 
       if thumbnail_url
         thumbnail = URI.open(thumbnail_url)
-        attributes[:thumbnail] = ActiveStorage::Blob
-        create_and_upload!(io: thumbnail, filename: 'thumbail_#{Time.now.to_i}')
+        attributes[:thumbnail] = ActiveStorage::Blob.create_and_upload!(io: thumbnail, filename: 'thumbail_#{Time.now.to_i}')
       end
 
       # asin
@@ -81,7 +81,7 @@ module  ProductParser
         product.update(attributes)
       rescue StandardError => e
         Rails.logger.error("Error in save_to_product: #{e.message}")
-        Rails.logger(e.backtrace.join("\n"))
+        Rails.logger.error(e.backtrace.join("\n"))
       end
       
     end
