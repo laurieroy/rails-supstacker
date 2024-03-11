@@ -24,7 +24,7 @@ class ProductsController < ApplicationController
   # POST /products or /products.json
   def create
     link = params[:product][:link].strip
-    ProductImportJob(link, @stack.id)
+    ProductImportJob.perform_later(link, @stack.id)
     redirect_to stack_path(@stack), notice: "Product is being created, hang tight!"
   end
 
