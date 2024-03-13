@@ -75,3 +75,5 @@ gem "railsui", "~> 2.0", :github => "getrailsui/railsui", :branch => "main"
 gem "nokogiri", "~> 1.16"
 
 gem "sidekick", "~> 0.7.0"
+
+gem "sidekiq", "~> 7.2"
