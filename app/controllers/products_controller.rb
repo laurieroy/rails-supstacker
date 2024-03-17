@@ -58,6 +58,6 @@ class ProductsController < ApplicationController
     end
 
     def set_stack
-      @stack = Stack.find(params[:id])
+      @stack = Stack.find(params[:stack_id])
     end
 end
