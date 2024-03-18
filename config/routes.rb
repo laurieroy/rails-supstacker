@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :stacks do
+  resources :stacks, param: :share_link do
     resources :products
   end
   resources :brands
