@@ -51,12 +51,11 @@ class StacksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_stack
-      @stack = Stack.find(params[:id])
+      @stack = Stack.find_by(share_link: params[:share_link]) ||  Stack.find_by(id: params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def stack_params
       params.require(:stack).permit(:title)
     end

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :stacks, param: :share_link do
-    resources :products
+    resources :products do
+      get "remove_thumbnail", on: :member
+    end
   end
   resources :brands
 

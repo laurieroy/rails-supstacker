@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import ClipboardController from "./clipboard_controller"
+application.register("clipboard", ClipboardController)
+
 import ComboSelectController from "./combo_select_controller"
 application.register("combo-select", ComboSelectController)
 
